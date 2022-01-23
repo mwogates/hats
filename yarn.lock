@@ -11053,6 +11053,11 @@ open@^7.0.2:
     is-docker "^2.0.0"
     is-wsl "^2.1.1"
 
+opencrypto@^1.5.5:
+  version "1.5.5"
+  resolved "https://registry.yarnpkg.com/opencrypto/-/opencrypto-1.5.5.tgz#d3176f8c8527a174190ed4e4db90ca3480a96d5c"
+  integrity sha512-hMwIB3B1O5B4YU8bVoUWKzEEc4ThfbysRdAsOsbvuXqZMXLH/Biq106BtrQ2oU5vwnDb9dvvITblG/T9aGb9vw==
+
 openpgp@5.0.1:
   version "5.0.1"
   resolved "https://registry.yarnpkg.com/openpgp/-/openpgp-5.0.1.tgz#fe355dcdc2074e505d5c22ee51e880a8296bd0ab"

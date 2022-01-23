@@ -1,28 +1,28 @@
 import { useRef } from "react"
 import { IStoredKey } from "../../types/types"
-import { generateKey } from 'openpgp'
-
+import { generateKey } from "./util"
+import OpenCrypto from 'opencrypto'
+const crypt = new OpenCrypto()
 
 export default function NewKey({ addKey }: { addKey: (newKey: IStoredKey) => any }) {
     const aliasRef = useRef<HTMLInputElement>(null)
     const passphraseRef = useRef<HTMLInputElement>(null)
-    const nameRef = useRef<HTMLInputElement>(null)
-    const emailRef = useRef<HTMLInputElement>(null)
 
 
     async function _handleClick() {
         const alias = aliasRef.current!.value
         const passphrase = passphraseRef.current?.value
-        const name = nameRef.current?.value
-        const email = emailRef.current?.value
-        const { privateKey } = await generateKey({
-            type: 'rsa', // Type of the key, defaults to ECC
-            rsaBits: 2048,
-            //curve: 'curve25519', // ECC curve name, defaults to curve25519
-            userIDs: { name, email }, // { name: 'Jon Smith', email: 'jon@example.com' }], // you can pass multiple user IDs
-            passphrase: passphrase, // protects the private key
-            format: 'armored' // output key format, defaults to 'armored' (other options: 'binary' or 'object')
-        });
+
+        const keypair = await crypt.getRSAKeyPair(2048, "SHA-512", "RSA-OAEP", ['encrypt', 'decrypt', 'wrapKey', 'unwrapKey'], true) as CryptoKeyPair
+        let privateKey
+        if (passphrase && passphrase !== "") {
+            privateKey = await crypt.encryptPrivateKey(keypair.privateKey!, passphrase, 64000, 'SHA-512', 'AES-GCM', 256)
+        } else {
+            privateKey = await crypt.cryptoPrivateToPem(keypair.privateKey!)
+        }
+        console.log({ privateKey })
+
+        console.log({})
         addKey({ alias, privateKey, passphrase })
     }
 
@@ -34,12 +34,6 @@ export default function NewKey({ addKey }: { addKey: (newKey: IStoredKey) => any
         <p>Passphrase</p>
         <p>Please notice,your passphrase isn’t saved to local storage! please save it as you see fit.</p>
         <input ref={passphraseRef} type="text" />
-
-
-        <p>Name</p>
-        <input ref={nameRef} type="text" />
-        <p>Name</p>
-        <input ref={emailRef} type="text" />
 
         <p>Min 6 chars</p>
         <button onClick={_handleClick}>Generate key pair </button>

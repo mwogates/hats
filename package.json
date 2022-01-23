@@ -39,6 +39,7 @@
     "millify": "^3.5.0",
     "moment": "^2.29.1",
     "msw": "^0.36.3",
+    "opencrypto": "^1.5.5",
     "openpgp": "5.0.1",
     "rc-tooltip": "^5.1.0",
     "react": "^17.0.1",

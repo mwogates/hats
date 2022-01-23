@@ -69,7 +69,7 @@ export default function CommitteeTools() {
                         <Decrypt storedKey={key} />
                     </div>
                 } else {
-                    return <div>{alias} not found</div>
+                    return <div>{alias} does not exist</div>
                 }
             } else {
                 return <NewKey addKey={addKey} />
