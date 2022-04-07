@@ -42,7 +42,6 @@ import Honeypots from "./components/Honeypots";
 import Gov from "./components/Gov";
 import VulnerabilityAccordion from "./components/Vulnerability/VulnerabilityAccordion";
 import LiquidityPools from "./components/LiquidityPools/LiquidityPools";
-//import CommitteeTools from "./components/CommitteeTools/CommitteTools";
 import VaultEditor from "./components/VaultEditor/VaultEditor"
 import CommitteeTools from "./components/CommitteeTools/CommitteTools";
 import Notification from "./components/Shared/Notification";
