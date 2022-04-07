@@ -43,6 +43,7 @@ import Gov from "./components/Gov";
 import VulnerabilityAccordion from "./components/Vulnerability/VulnerabilityAccordion";
 import LiquidityPools from "./components/LiquidityPools/LiquidityPools";
 import VaultEditor from "./components/VaultEditor/VaultEditor"
+import BountyPayout from "./components/BountyPayout/BountyPayout"
 import CommitteeTools from "./components/CommitteeTools/CommitteTools";
 import Notification from "./components/Shared/Notification";
 import "./styles/App.scss";
@@ -248,6 +249,7 @@ function App() {
           <Route path=":ipfsHash" element={<VaultEditor />} />
         </Route>
         <Route path={RoutePaths.nft_airdrop} element={<NFTAirdrop />} />
+        <Route path={RoutePaths.submission} element={<BountyPayout />} />
       </Routes>
       {
         showNotification && hasSeenWelcomePage && <Notification />
